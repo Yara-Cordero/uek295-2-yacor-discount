@@ -1,5 +1,5 @@
-package ch.noseryoung.sbdemo02.domain.user;
-
+package ch.noseryoung.uek295yacordiscount.domain.user;
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -61,3 +61,5 @@ public class UserService implements UserDetailsService {
         }
     }
 }
+
+ */

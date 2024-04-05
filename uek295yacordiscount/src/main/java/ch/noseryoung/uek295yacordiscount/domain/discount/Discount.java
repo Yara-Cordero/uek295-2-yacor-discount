@@ -23,7 +23,6 @@ public class Discount {
 
     @Column
     @Size(min = 6, max = 13)
-    @NotNull(message = "code must contain a value.")
     private String code;
 
     @Column(name = "discount")
@@ -33,7 +32,6 @@ public class Discount {
     private double discountInPercent;
 
     @Column (name = "id_client")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer clientId;
 
 

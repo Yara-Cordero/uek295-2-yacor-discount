@@ -1,5 +1,5 @@
-package ch.noseryoung.sbdemo02.domain.user;
-
+package ch.noseryoung.uek295yacordiscount.domain.user;
+/*
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,3 +9,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByName(String name); // Spring Boot (Hibernate) Magic: Based on the method name, a usable SQL query gets generated
 }
+
+
+ */

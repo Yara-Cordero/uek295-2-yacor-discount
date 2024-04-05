@@ -1,3 +1,5 @@
 
-_
-java:S2094"BRemove this empty class, write its code or make it an "interface".(½Ş¬Ü8ùòÂëê1
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×øÍòê1J$18cba92b-c36a-4daf-ab43-aea6de90892b
+q
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8¤«Úòê1J$6ce2bc6a-fd46-44f8-84f1-7c296e612946

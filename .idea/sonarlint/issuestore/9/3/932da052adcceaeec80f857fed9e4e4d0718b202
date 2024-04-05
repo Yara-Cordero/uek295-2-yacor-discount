@@ -1,3 +1,4 @@
 
 …
-java:S2094"BRemove this empty class, write its code or make it an "interface".(öß­Ê8€ĞÄëê1J$9e06f821-3b4d-4f75-8183-21bf9fae0a7b
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8òìñê1J$c1a5afc6-91e6-4793-b8e4-db765a430622
+X	java:S125 "<This block of commented-out lines of code should be removed.(èçˆ8Š©§óê1
