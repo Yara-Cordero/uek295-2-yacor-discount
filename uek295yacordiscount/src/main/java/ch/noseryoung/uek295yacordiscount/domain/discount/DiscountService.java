@@ -19,17 +19,15 @@ public class DiscountService {
     }
 
     public Discount getDiscountById(int index){
-        return repository.findById(index).orElseThrow(() -> new NoSuchElementException("GET: Discount with " + index + " could not be found."));
+        return repository.findById(index).orElseThrow(() -> new NoSuchElementException("GET: Discount with ID " + index + " could not be found."));
     }
 
     public Discount addDiscount(Discount discount){
-        //discount.setDiscountId(null);
-        //discount.setCode(null);
         return repository.save(discount);
     }
 
     public Discount updateDiscount(int index, Discount discount){
-        Discount existingDiscount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("UPDATE: Discount with " + index + "could not be found"));
+        Discount existingDiscount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("UPDATE: Discount with ID " + index + " could not be found"));
         if (existingDiscount != null){
             existingDiscount.setCode(discount.getCode());
             existingDiscount.setDiscountInPercent(discount.getDiscountInPercent());
@@ -41,11 +39,8 @@ public class DiscountService {
     }
 
     public void deleteDiscount(int index){
-        Discount discount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("DELETE: Discount with " + index + "could not be found"));
-        repository.deleteById(index);
+        Discount discount;
+        discount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("DELETE: Discount with ID " + index + " could not be found"));
+        repository.delete(discount);
     }
-
-
-
-
 }

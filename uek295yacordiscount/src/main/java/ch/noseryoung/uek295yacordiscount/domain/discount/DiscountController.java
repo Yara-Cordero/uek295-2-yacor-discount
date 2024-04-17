@@ -34,7 +34,7 @@ public class DiscountController {
         return ResponseEntity.ok().body(service.getDiscountById(discountId));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     @PreAuthorize("hasAuthority('CREATE')")
     @Operation(description = "Add a discount which will be stored in the DB. Code will automatically be generated. Requires CREATE Authority", summary = "Add Discount in DB")
     public ResponseEntity<Discount> addDiscount
