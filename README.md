@@ -22,7 +22,7 @@ How to run this Project on your local Machine.
 To use my project the files must be stored local on your device. The easiest way is to clone it via **GitBash** or **GitHub Desktop**.
 
 ```
-git clone https://github.com/Yara-Cordero/uek295-2-yacor-discount
+git clone https://github.com/Yara-Cordero/uek295-2-yacor-discount.git
 ```
 
 After cloning, *open the project* in your choosen IDE.
