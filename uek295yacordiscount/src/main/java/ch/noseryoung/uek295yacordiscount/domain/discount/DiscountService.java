@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class DiscountService {
@@ -18,18 +19,19 @@ public class DiscountService {
     }
 
     public Discount getDiscountById(int index){
-        return repository.findById(index).orElse(null);
+        return repository.findById(index).orElseThrow(() -> new NoSuchElementException("GET: Discount with " + index + " could not be found."));
     }
 
     public Discount addDiscount(Discount discount){
-        discount.setDiscountId(null);
+        //discount.setDiscountId(null);
+        //discount.setCode(null);
         return repository.save(discount);
     }
 
     public Discount updateDiscount(int index, Discount discount){
-        Discount existingDiscount = repository.findById(index).orElse(null);
+        Discount existingDiscount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("UPDATE: Discount with " + index + "could not be found"));
         if (existingDiscount != null){
-            //existingDiscount.setCode(discount.getCode());
+            existingDiscount.setCode(discount.getCode());
             existingDiscount.setDiscountInPercent(discount.getDiscountInPercent());
             existingDiscount.setClientId(discount.getClientId());
 
@@ -39,6 +41,11 @@ public class DiscountService {
     }
 
     public void deleteDiscount(int index){
+        Discount discount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("DELETE: Discount with " + index + "could not be found"));
         repository.deleteById(index);
     }
+
+
+
+
 }

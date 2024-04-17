@@ -18,7 +18,7 @@ public class Discount {
 
     @Id
     @Column (name = "discount_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer discountId;
 
     @Column
@@ -26,14 +26,13 @@ public class Discount {
     private String code;
 
     @Column(name = "discount")
-    @NotNull(message = "discount must contain a value.")
+    @NotNull(message = "Discount must contain a value.")
     @DecimalMax(value = "100")
     @DecimalMin(value = "0.0")
     private double discountInPercent;
 
     @Column (name = "id_client")
     private Integer clientId;
-
 
     @PrePersist
     public void generateCode() {
@@ -46,4 +45,5 @@ public class Discount {
         }
         this.code = sb.toString();
     }
+
 }
