@@ -1,5 +1,5 @@
 package ch.noseryoung.uek295yacordiscount.domain.user;
-/*
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
             return user.getRole().getAuthorities().stream()
-                    .map(a -> new SimpleGrantedAuthority(a.getName()))
+                    .map(a -> new SimpleGrantedAuthority(a.getAuthorityName()))
                     .toList();
         }
 
@@ -61,5 +61,3 @@ public class UserService implements UserDetailsService {
         }
     }
 }
-
- */
