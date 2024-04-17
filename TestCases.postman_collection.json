@@ -1,0 +1,783 @@
+{
+	"info": {
+		"_postman_id": "69f888d1-de21-4d87-9758-1de748078b4a",
+		"name": "TestCases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33922591"
+	},
+	"item": [
+		{
+			"name": "ADMIN post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+							"});",
+							"",
+							"pm.test(\"Response has discountId, code, discountInPercent, and clientId properties\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property('discountId');",
+							"    pm.expect(pm.response.json()).to.have.property('code');",
+							"    pm.expect(pm.response.json()).to.have.property('discountInPercent');",
+							"    pm.expect(pm.response.json()).to.have.property('clientId');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cooldude22",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"discountId\": null,\r\n   \"code\": null,\r\n   \"discountInPercent\": 25.2,\r\n   \"clientId\": 7693 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/discounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADMIN getAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Response is an array\", function () {",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"});",
+							"",
+							"pm.test(\"Each element in the array has required properties\", function () {",
+							"    pm.response.json().forEach(function(discount) {",
+							"        pm.expect(discount).to.have.property('discountId');",
+							"        pm.expect(discount).to.have.property('code');",
+							"        pm.expect(discount).to.have.property('discountInPercent');",
+							"        pm.expect(discount).to.have.property('clientId');",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cooldude22",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/discounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADMIN getByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.include.all.keys('discountId', 'code', 'discountInPercent', 'clientId');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Code is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.code).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Code should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"DiscountInPercent is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.discountInPercent).to.be.a('number');\r",
+							"    pm.expect(responseData.discountInPercent).to.be.at.least(0, \"DiscountInPercent should be a non-negative integer\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ClientId is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.clientId).to.be.a('number');\r",
+							"    pm.expect(responseData.clientId).to.be.at.least(0);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cooldude22",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/discounts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADMIN delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Discount Successful\", function () {\r",
+							"    // Check if the response status is 200 OK\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    // Verify that the response body contains the expected message or data\r",
+							"    pm.expect(pm.response.text()).to.include(\"Discount has been deleted.\");\r",
+							"\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cooldude22",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/discounts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADMIN put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the structure of the response\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.discountId).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(responseData.code).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(responseData.discountInPercent).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(responseData.clientId).to.exist.and.to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"All required fields are present in the response\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('discountId');\r",
+							"    pm.expect(responseData).to.have.property('code');\r",
+							"    pm.expect(responseData).to.have.property('discountInPercent');\r",
+							"    pm.expect(responseData).to.have.property('clientId');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"DiscountInPercent is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.discountInPercent).to.be.a('number').and.to.satisfy((value) => value >= 0, \"DiscountInPercent must be a non-negative integer\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header is set to application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cooldude22",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"discountId\": 4,\r\n        \"code\": \"BV003YP\",\r\n        \"discountInPercent\": 35.0,\r\n        \"clientId\": 18004\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/discounts/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER getAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    responseData.forEach(function(discount) {\r",
+							"        pm.expect(discount).to.have.property('discountId');\r",
+							"        pm.expect(discount).to.have.property('code');\r",
+							"        pm.expect(discount).to.have.property('discountInPercent');\r",
+							"        pm.expect(discount).to.have.property('clientId');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Code should be a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(discount) {\r",
+							"    pm.expect(discount.code).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Code should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"DiscountInPercent is a non-negative integer\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"\r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(discount) {\r",
+							"    pm.expect(discount.discountInPercent).to.be.a('number').and.to.be.at.least(0, \"DiscountInPercent should be a non-negative integer\");\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ClientId is a non-negative integer\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(item) {\r",
+							"    pm.expect(item.clientId).to.be.a('number').and.to.satisfy((val) => val >= 0, \"ClientId should be a non-negative integer\");\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tubularperson10",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/discounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER getByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.discountId).to.exist;\r",
+							"  pm.expect(responseData.code).to.exist;\r",
+							"  pm.expect(responseData.discountInPercent).to.exist;\r",
+							"  pm.expect(responseData.clientId).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Code is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.code).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Code should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"DiscountInPercent is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.discountInPercent).to.be.a('number');\r",
+							"    pm.expect(responseData.discountInPercent).to.be.at.least(0);\r",
+							"  });\r",
+							"\r",
+							"\r",
+							"pm.test(\"ClientId is a positive integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.clientId).to.be.a('number');\r",
+							"    pm.expect(responseData.clientId).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tubularperson10",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/discounts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 403\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(403);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    // Ensure responseData is an object\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"\r",
+							"    // Check for required fields in the response\r",
+							"    pm.expect(responseData).to.have.property('message'); // Example required field\r",
+							"    pm.expect(responseData.message).to.be.a('string');    // Ensure 'message' is a string\r",
+							"\r",
+							"    // Add more checks for other required fields as needed\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tubularperson10",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/discounts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 403\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(403);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"\r",
+							"\r",
+							"    pm.expect(responseData).to.have.property('message'); \r",
+							"    pm.expect(responseData.message).to.be.a('string');   \r",
+							"\r",
+							"\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tubularperson10",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"discountId\": 3,\r\n    \"code\": \"Q12M0SV\",\r\n    \"discountInPercent\": 70.0,\r\n    \"clientId\": 3933\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/discounts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 403\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(403);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"\r",
+							"\r",
+							"    pm.expect(responseData).to.have.property('message'); \r",
+							"    pm.expect(responseData.message).to.be.a('string');   \r",
+							"\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tubularperson10",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"discountId\": null,\r\n   \"code\": null,\r\n   \"discountInPercent\": 25.2,\r\n   \"clientId\": 7693 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/discounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discounts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
