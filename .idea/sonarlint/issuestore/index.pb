@@ -27,3 +27,9 @@ cuek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/user
 `uek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/user/UserService.java,9\a\9a6edf3629176006138de6b5dd5b1c4605f709d2
 “
 cuek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/authority/Authority.java,4\8\48a4ad6e415e6a5c9cdde03f6f462b11040d136d
+‰
+Yuek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/role/Role.java,9\c\9c439d6dadb93db9816f7657e82771804f981b30
+‰
+Yuek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/user/User.java,e\d\edd8e2654bd7025390436c003b6d0cd9a9b1c6f3
+S
+#uek295yacordiscount/settings.gradle,0\7\07f46ef833f296bb7e1e403734a57e376032c90d

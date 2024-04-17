@@ -1,5 +1,7 @@
 
+
+java:S2259@"LA "NullPointerException" could be thrown; "getFieldError()" can return null.(³¦¡8øØæ°î1J$29e579ee-af27-4b9c-8a81-d734d76266c4
+”
+java:S2259A"LA "NullPointerException" could be thrown; "getFieldError()" can return null.(Ü–àüÿÿÿÿ8ùØæ°î1J$64d2587a-f26a-4e50-be80-bfc8c6514482
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×øÍòê1J$18cba92b-c36a-4daf-ab43-aea6de90892b
-q
-java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8¤«Úòê1J$6ce2bc6a-fd46-44f8-84f1-7c296e612946
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8üØæ°î1J$67752cdd-7ca5-4c3f-8ff5-611b4cab9e32

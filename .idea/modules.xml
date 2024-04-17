@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/uek295-2-yacor-discount.iml" filepath="$PROJECT_DIR$/.idea/uek295-2-yacor-discount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uek295yacordiscount.main.iml" filepath="$PROJECT_DIR$/.idea/modules/uek295yacordiscount.main.iml" />
     </modules>
   </component>
 </project>
