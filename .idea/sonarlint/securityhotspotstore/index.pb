@@ -31,3 +31,5 @@ Yuek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/role
 Yuek295yacordiscount/src/main/java/ch/noseryoung/uek295yacordiscount/domain/user/User.java,e\d\edd8e2654bd7025390436c003b6d0cd9a9b1c6f3
 S
 #uek295yacordiscount/settings.gradle,0\7\07f46ef833f296bb7e1e403734a57e376032c90d
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

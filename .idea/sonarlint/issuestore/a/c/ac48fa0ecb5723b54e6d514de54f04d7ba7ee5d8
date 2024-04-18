@@ -4,6 +4,6 @@ java:S6813"BRemove this field injection and use constructor injection instead.
 _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¹Þ¡°î1
 ~
-java:S3305"\Inject this field value directly into "authenticationManager", the only method that uses it.(¿ì§’ýÿÿÿÿ8»Þ¡°î1
-~
 java:S3305"\Inject this field value directly into "authenticationManager", the only method that uses it.(¶òÁÈùÿÿÿÿ8»Þ¡°î1
+~
+java:S3305"\Inject this field value directly into "authenticationManager", the only method that uses it.(¿ì§’ýÿÿÿÿ8»Þ¡°î1

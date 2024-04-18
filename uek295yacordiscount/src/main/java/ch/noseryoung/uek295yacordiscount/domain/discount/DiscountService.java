@@ -28,14 +28,11 @@ public class DiscountService {
 
     public Discount updateDiscount(int index, Discount discount){
         Discount existingDiscount = repository.findById(index).orElseThrow(() -> new NoSuchElementException("UPDATE: Discount with ID " + index + " could not be found"));
-        if (existingDiscount != null){
-            existingDiscount.setCode(discount.getCode());
-            existingDiscount.setDiscountInPercent(discount.getDiscountInPercent());
-            existingDiscount.setClientId(discount.getClientId());
+        existingDiscount.setCode(discount.getCode());
+        existingDiscount.setDiscountInPercent(discount.getDiscountInPercent());
+        existingDiscount.setClientId(discount.getClientId());
 
-            return repository.save(existingDiscount);
-        }
-        return null;
+        return repository.save(existingDiscount);
     }
 
     public void deleteDiscount(int index){

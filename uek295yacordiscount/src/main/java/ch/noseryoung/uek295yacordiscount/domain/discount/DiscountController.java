@@ -21,7 +21,7 @@ public class DiscountController {
 
     @GetMapping()
     @PreAuthorize("hasAuthority('READ')")
-    @Operation(description = "Receive a list of all discounts stored in the DB. Requires READ Authority", summary = "All Discount in DB")
+    @Operation(description = "Receive a list of all discounts stored in the DB. Requires READ Authority", summary = "All Discounts in DB")
     public ResponseEntity<List<Discount>> getAllDiscounts(){
         return ResponseEntity.ok().body(service.getAllDiscounts());
     }

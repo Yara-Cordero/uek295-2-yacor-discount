@@ -1,0 +1,5 @@
+
+]
+java:S1874";Remove this use of "NoOpPasswordEncoder"; it is deprecated.(‘Ç¥¢ùÿÿÿÿ8žÅ•ƒï1
+
+java:S1128"]Remove this unused import 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'.(åÅÚ…ûÿÿÿÿ8ŸÅ•ƒï1

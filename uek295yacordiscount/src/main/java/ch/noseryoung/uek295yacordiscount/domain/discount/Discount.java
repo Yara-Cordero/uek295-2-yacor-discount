@@ -39,7 +39,7 @@ public class Discount {
         String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
-        for (int i = 6; i < 13; i++) {
+        for (int i = 0; i < 7; i++) {
             int index = random.nextInt(alphanumeric.length());
             sb.append(alphanumeric.charAt(index));
         }

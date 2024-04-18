@@ -24,7 +24,6 @@ VALUES (
         18294
        )
 ON CONFLICT DO NOTHING;
-
 INSERT INTO authorities("authority_id", "authority_name")
 VALUES (1, 'READ'),
        (2, 'CREATE'),
